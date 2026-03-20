@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявки фестиваля</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f2ee;
+  --surface: #ffffff;
+  --surface2: #faf8f5;
+  --border: #e2ddd6;
+  --border2: #cdc7be;
+  --accent: #1a56a0;
+  --accent2: #2563b8;
+  --accent-dim: rgba(26,86,160,0.07);
+  --accent-dim2: rgba(26,86,160,0.15);
+  --text: #1a1612;
+  --text2: #3d3530;
+  --muted: #7a6e64;
+  --muted2: #a99e94;
+  --green: #2d7a4f;
+  --green-bg: rgba(45,122,79,0.08);
+  --red-bg: rgba(180,40,40,0.08);
+  --red: #b42828;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow2: 0 4px 24px rgba(0,0,0,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Mulish', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 36px 60px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 60px;
+  width: 100px; height: 3px;
+  background: var(--accent);
+}
+.hdr-eye {
+  font-size: 13px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.1;
+}
+.hdr-sub {
+  font-size: 17px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.hdr-stat {
+  text-align: right;
+}
+.hdr-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+}
+.hdr-lbl {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.hdr-date {
+  font-size: 14px;
+  color: var(--muted2);
+  margin-top: 4px;
+}
+
+/* ── UPLOAD ── */
+.upload-zone {
+  padding: 24px 60px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.drop-area {
+  border: 2px dashed var(--border2);
+  border-radius: 8px;
+  padding: 24px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .25s;
+  background: var(--surface);
+  position: relative;
+}
+.drop-area:hover, .drop-area.drag {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  transform: scale(1.005);
+}
+.drop-icon { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+.drop-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.drop-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.drop-sub b { color: var(--accent); font-weight: 700; }
+.drop-area input[type=file] {
+  position: absolute; inset: 0;
+  opacity: 0; cursor: pointer;
+  width: 100%; height: 100%;
+}
+.upload-status {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  align-items: center;
+  gap: 8px;
+}
+.upload-status.ok  { display:flex; background: var(--green-bg); border: 1px solid rgba(45,122,79,.25); color: var(--green); }
+.upload-status.err { display:flex; background: var(--red-bg);   border: 1px solid rgba(180,40,40,.25);  color: var(--red); }
+
+/* ── TOOLBAR ── */
+.toolbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 60px;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  box-shadow: var(--shadow);
+}
+.tb-label { font-size: 13px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted2); font-weight: 700; margin-right: 4px; }
+.tb-btn {
+  background: transparent;
+  border: 1.5px solid var(--border2);
+  color: var(--muted);
+  font-family: 'Mulish', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.tb-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+.tb-btn.active { border-color: var(--accent); color: var(--surface); background: var(--accent); }
+.search-wrap { margin-left: auto; position: relative; }
+.search-wrap input {
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  color: var(--text);
+  font-family: 'Mulish', sans-serif;
+  font-size: 17px;
+  padding: 8px 16px 8px 38px;
+  border-radius: 20px;
+  width: 240px;
+  outline: none;
+  transition: border-color .2s;
+}
+.search-wrap input:focus { border-color: var(--accent); }
+.si { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted2); font-size: 18px; pointer-events: none; }
+
+/* ── CARDS ── */
+#list { padding: 32px 60px; display: flex; flex-direction: column; gap: 16px; }
+
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: fadeUp .4s ease both;
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: var(--shadow2); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+/* card header */
+.card-head {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  cursor: pointer;
+  transition: background .15s;
+}
+.card-head:hover { background: var(--surface2); }
+.card-num {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-dim);
+  border-right: 1.5px solid var(--border);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 900;
+  color: var(--accent);
+  min-height: 84px;
+}
+.card-sum { padding: 20px 28px; }
+.card-play {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.card-theater { font-size: 16px; color: var(--accent2); font-weight: 700; margin-bottom: 8px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  display: inline-flex; align-items: center;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: .04em;
+  padding: 4px 12px; border-radius: 20px; border: 1.5px solid;
+}
+.cg { color: var(--accent); border-color: rgba(26,86,160,.3); background: var(--accent-dim); }
+.ca { color: var(--red); border-color: rgba(180,40,40,.3); background: var(--red-bg); }
+.cc { color: var(--muted); border-color: var(--border2); background: var(--surface2); }
+.ct { color: var(--green); border-color: rgba(45,122,79,.3); background: var(--green-bg); }
+
+.toggle {
+  display: flex; align-items: center; padding: 0 24px;
+  color: var(--muted2); font-size: 20px;
+  transition: transform .3s, color .2s;
+}
+.toggle.open { transform: rotate(180deg); color: var(--accent); }
+
+/* card body */
+.card-body { display: none; border-top: 1.5px solid var(--border); }
+.card-body.open { display: block; }
+.bg { display: grid; grid-template-columns: 1fr 1fr; }
+.bs {
+  padding: 24px 28px;
+  border-right: 1.5px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
+}
+.bs:nth-child(even) { border-right: none; }
+.bs.full { grid-column: 1/-1; border-right: none; }
+
+.st {
+  font-size: 12px; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-dim2);
+  display: flex; align-items: center; gap: 7px;
+}
+.st::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+.fg { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+.fg.one { grid-template-columns: 1fr; }
+.f label {
+  display: block; font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted2);
+  font-weight: 700; margin-bottom: 4px;
+}
+.f p {
+  font-size: 17px; color: var(--text2);
+  line-height: 1.55; white-space: pre-line; font-weight: 500;
+}
+.f p.mt { color: var(--muted2); font-style: italic; font-size: 15px; font-weight: 400; }
+.f.s2 { grid-column: 1/-1; }
+
+.ann {
+  font-size: 18px; color: var(--text2);
+  line-height: 1.8; white-space: pre-line; font-weight: 400;
+}
+
+/* tech table */
+.tt { width: 100%; border-collapse: collapse; font-size: 17px; }
+.tt tr { border-bottom: 1px solid var(--border); }
+.tt tr:last-child { border-bottom: none; }
+.tt td { padding: 10px 12px; vertical-align: top; }
+.tt td:first-child { color: var(--muted); width: 50%; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.tt td:last-child { color: var(--text); font-weight: 700; font-size: 17px; }
+.tt tr:nth-child(odd) td { background: var(--surface2); }
+
+/* cast */
+.cast-list { display: flex; flex-direction: column; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden; }
+.cast-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 16px; }
+.cast-row:last-child { border-bottom: none; }
+.cast-row:nth-child(odd) { background: var(--surface2); }
+.cast-name { color: var(--text); font-weight: 600; }
+.cast-role { color: var(--accent); font-weight: 700; text-align: right; font-size: 15px; }
+
+/* links */
+.lnks { display: flex; gap: 10px; flex-wrap: wrap; }
+.ext {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 15px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--accent); border: 2px solid var(--accent);
+  padding: 8px 18px; border-radius: 6px; text-decoration: none;
+  transition: all .2s;
+}
+.ext:hover { background: var(--accent); color: white; }
+
+/* contact */
+.ccard {
+  background: var(--accent-dim);
+  border: 1.5px solid rgba(26,86,160,.2);
+  border-radius: 8px; padding: 16px 20px;
+}
+.cname { font-size: 17px; font-weight: 700; color: var(--text); }
+.cpos { font-size: 15px; color: var(--accent); font-weight: 700; letter-spacing: .04em; margin: 4px 0; }
+.clinks { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+.clinks a { font-size: 16px; color: var(--muted); text-decoration: none; font-weight: 600; transition: color .2s; }
+.clinks a:hover { color: var(--accent); }
+
+/* scores */
+.scores { display: flex; gap: 24px; align-items: center; }
+.sv { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--accent); line-height: 1; }
+.sl { font-size: 14px; color: var(--muted2); letter-spacing: .06em; text-transform: uppercase; font-weight: 700; margin-top: 4px; }
+
+/* poster */
+.poster-img { max-width: 100%; max-height: 280px; display: block; border: 1.5px solid var(--border); border-radius: 6px; }
+
+/* empty */
+.empty { padding: 80px 40px; text-align: center; color: var(--muted2); font-size: 17px; }
+.empty span { display: block; font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--border2); margin-bottom: 16px; }
+
+footer {
+  border-top: 1.5px solid var(--border);
+  padding: 18px 60px;
+  font-size: 15px; color: var(--muted2);
+  text-align: center; font-weight: 600; letter-spacing: .04em;
+  background: var(--surface);
+}
+
+@media(max-width:640px){
+  header, .upload-zone, .toolbar, #list, footer { padding-left: 16px; padding-right: 16px; }
+  .bg { grid-template-columns: 1fr; }
+  .bs { border-right: none; }
+  .bs.full { grid-column: 1; }
+  .fg { grid-template-columns: 1fr; }
+  .card-num { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="hdr-eye">Фестиваль · Внутренний портал</div>
+    <h1>Театральные заявки</h1>
+    <div class="hdr-sub">Все заявки участников фестиваля</div>
+  </div>
+  <div class="hdr-stat">
+    <span class="hdr-num" id="cnt">0</span>
+    <span class="hdr-lbl">заявок</span>
+    <div class="hdr-date" id="lastUpdate">Данные не загружены</div>
+  </div>
+</header>
+
+<div class="upload-zone">
+  <div class="drop-area" id="dropArea">
+    <input type="file" accept=".json" id="fileInput">
+    <span class="drop-icon">📂</span>
+    <div class="drop-title">Перетащите JSON файл сюда или нажмите</div>
+    <div class="drop-sub">Скачайте из Яндекс Форм → <b>Ответы → Скачать JSON</b> → перетащите сюда</div>
+  </div>
+  <div class="upload-status" id="uploadStatus"></div>
+</div>
+
+<div class="toolbar">
+  <span class="tb-label">Жанр:</span>
+  <button class="tb-btn active" data-genre="all">Все</button>
+  <button class="tb-btn" data-genre="Драматический">Драматический</button>
+  <button class="tb-btn" data-genre="Пластический">Пластический</button>
+  <button class="tb-btn" data-genre="Музыкальный">Музыкальный</button>
+  <button class="tb-btn" data-genre="Визуальная миниатюра">Миниатюра</button>
+  <div class="search-wrap">
+    <span class="si">⌕</span>
+    <input type="text" id="sq" placeholder="Поиск по театру, спектаклю…">
+  </div>
+</div>
+
+<div id="list">
+  <div class="empty"><span>◎</span>Загрузите JSON файл из Яндекс Форм чтобы увидеть заявки</div>
+</div>
+
+<footer>Внутренний ресурс фестиваля · Обновляется через JSON из Яндекс Форм</footer>
+
+<script>
+let allData = [];
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function v(d,k){ return (d[k]||'').toString().trim(); }
+
+function getAge(d){
+  return [v(d,'9. Возрастные ограничения: / 12 +'),
+          v(d,'9. Возрастные ограничения: / 16 +'),
+          v(d,'9. Возрастные ограничения: / 18 +'),
+          v(d,'Другое')].filter(Boolean).join(', ');
+}
+
+function castRows(str){
+  if(!str||!str.trim()) return '<p class="mt">не указано</p>';
+  const lines = str.split('\n').map(l=>l.trim()).filter(Boolean);
+  return '<div class="cast-list">'+lines.map(line=>{
+    const sep = line.includes(' — ')?' — ':line.includes(' - ')?' - ':null;
+    if(sep){
+      const[n,...r]=line.split(sep);
+      return `<div class="cast-row"><span class="cast-name">${esc(n.trim())}</span><span class="cast-role">${esc(r.join(sep).trim())}</span></div>`;
+    }
+    return `<div class="cast-row"><span class="cast-name">${esc(line)}</span><span class="cast-role"></span></div>`;
+  }).join('')+'</div>';
+}
+
+function posterImg(url){
+  if(!url) return '<p class="mt">не указано</p>';
+  if(/\.(jpg|jpeg|png|webp|gif)(\?|$)/i.test(url))
+    return `<img class="poster-img" src="${esc(url)}" alt="Афиша" onerror="this.style.display='none'">`;
+  return `<a class="ext" href="${esc(url)}" target="_blank">Открыть файл</a>`;
+}
+
+function contactCard(fio,pos,phone,email){
+  if(!fio&&!phone&&!email) return '<p class="mt">не указано</p>';
+  return `<div class="ccard">
+    ${fio?`<div class="cname">${esc(fio)}</div>`:''}
+    ${pos?`<div class="cpos">${esc(pos)}</div>`:''}
+    <div class="clinks">
+      ${phone?`<a href="tel:${esc(phone)}">📞 ${esc(phone)}</a>`:''}
+      ${email?`<a href="mailto:${esc(email)}">✉ ${esc(email)}</a>`:''}
+    </div>
+  </div>`;
+}
+
+function ttRow(label,val){
+  const e=!val||!val.trim();
+  return `<tr><td>${esc(label)}</td><td>${e?'<span style="color:var(--muted2);font-weight:400">—</span>':esc(val)}</td></tr>`;
+}
+
+function parseJson(raw){
+  return raw.map(entry=>{
+    const d={};
+    entry.forEach(([k,val])=>{ d[k]=val; });
+    return d;
+  });
+}
+
+function renderCard(d,idx){
+  const CAST_KEY='Пример: \nАктерский состав (ФИО, роль):\n[Иванов Иван Иванович] — [роль]\n[Петрова Мария Сергеевна] — [роль]\n[и т.д.]';
+  const SPEC_KEY='Пример:\nХудожник по костюмам: [ФИО]\nХудожник по свету: [ФИО]\nЗвукорежиссер: [ФИО]\nВидеохудожник: [ФИО]\nПедагог по жестовому языку / Консультант по инклюзии: [ФИО]';
+  const age=getAge(d);
+  const theater=v(d,'1. Полное официальное и сокращенное названия театра:');
+  const address=v(d,' 2. Регион, почтовый адрес театра:');
+  const play=v(d,' 3. Название спектакля:');
+  const genre=v(d,'4. Жанр:');
+  const author=v(d,'5. Автор пьесы / Инсценировка:');
+  const dir=v(d,'6. Режиссер-постановщик:');
+  const des=v(d,'7. Художник-постановщик:');
+  const prem=v(d,'8. Дата премьеры:');
+  const dur=v(d,' 10. Продолжительность спектакля:');
+  const interm=v(d,'11. Количество антрактов:');
+  const acts=v(d,'12. Продолжительность каждого акта:');
+  const mount=v(d,'13. Время монтировки:');
+  const lmount=v(d,'14. Время световой монтировки:');
+  const umount=v(d,'15. Время демонтажа:');
+  const stage=v(d,'16. Зрители располагаются:');
+  const tech=v(d,'17. Технические особенности спектакля, о которых следует известить организаторов заранее:');
+  const nact=v(d,'Количество занятых актеров: ');
+  const ncrew=v(d,'Специалисты цехов: ');
+  const nrig=v(d,'Монтировщики: [число]');
+  const nlit=v(d,'Осветитель: [число]');
+  const nsnd=v(d,'Звукооператор: [число]');
+  const trans=v(d,'20. Нужен ли синхронный перевод?');
+  const ann=v(d,' 21. Аннотация на спектакль');
+  const progUrl=v(d,'22. Программа спектакля:');
+  const postUrl=v(d,'23. Афиша спектакля:');
+  const cast=(d[CAST_KEY]||'').trim();
+  const spec=(d[SPEC_KEY]||'').trim();
+  const vidUrl=v(d,'Ссылка');
+  const presUrl=v(d,'Ссылки');
+  const cFio=v(d,'ФИО'); const cPos=v(d,'Должность');
+  const cEmail=v(d,'E-mail'); const cPhone=v(d,'Телефон');
+  const lFio=v(d,'ФИО '); const lPhone=v(d,'Телефон'); const lEmail=v(d,'E-mail');
+  const scored=v(d,'Набрано баллов')||'0';
+  const total=v(d,'Всего баллов')||'0';
+
+  return `
+<div class="card" data-genre="${esc(genre)}" data-s="${esc((play+theater+address+genre).toLowerCase())}">
+  <div class="card-head" onclick="tog(this)">
+    <div class="card-num">${idx+1}</div>
+    <div class="card-sum">
+      <div class="card-play">${esc(play)||'—'}</div>
+      <div class="card-theater">${esc(theater)}</div>
+      <div class="chips">
+        ${genre?`<span class="chip cg">${esc(genre)}</span>`:''}
+        ${age?`<span class="chip ca">${esc(age)}</span>`:''}
+        <span class="chip cc">📍 ${esc(address.split(',').slice(-2).join(',').trim()||address)}</span>
+        ${dur?`<span class="chip cc">⏱ ${esc(dur)}</span>`:''}
+        ${trans?`<span class="chip ${trans==='Да'?'ct':'cc'}">Перевод: ${esc(trans)}</span>`:''}
+      </div>
+    </div>
+    <div class="toggle">▾</div>
+  </div>
+  <div class="card-body">
+    <div class="bg">
+
+      <div class="bs"><div class="st">Театр и адрес</div>
+        <div class="fg">
+          <div class="f"><label>ID заявки</label><p>${esc(v(d,'ID'))}</p></div>
+          <div class="f"><label>Дата подачи</label><p>${esc(v(d,'Время создания'))}</p></div>
+          <div class="f s2"><label>Полное название театра</label><p>${esc(theater)||'—'}</p></div>
+          <div class="f s2"><label>Регион / Адрес</label><p>${esc(address)||'—'}</p></div>
+        </div>
+      </div>
+
+      <div class="bs"><div class="st">О спектакле</div>
+        <div class="fg">
+          <div class="f s2"><label>Название</label><p>${esc(play)}</p></div>
+          <div class="f"><label>Жанр</label><p>${esc(genre)||'—'}</p></div>
+          <div class="f"><label>Возраст</label><p>${esc(age)||'—'}</p></div>
+          <div class="f s2"><label>Автор / Инсценировка</label><p>${esc(author)||'—'}</p></div>
+          <div class="f"><label>Режиссёр</label><p>${esc(dir)||'—'}</p></div>
+          <div class="f"><label>Художник</label><p>${esc(des)||'—'}</p></div>
+          <div class="f"><label>Премьера</label><p>${esc(prem)||'—'}</p></div>
+          <div class="f"><label>Перевод</label><p>${esc(trans)||'—'}</p></div>
+        </div>
+      </div>
+
+      <div class="bs full"><div class="st">Аннотация</div>
+        <p class="ann">${esc(ann)||'<em style="color:var(--muted2)">не указано</em>'}</p>
+      </div>
+
+      <div class="bs"><div class="st">Афиша</div>
+        ${posterImg(postUrl)}
+        ${postUrl?`<div style="margin-top:12px"><a class="ext" href="${esc(postUrl)}" target="_blank">↗ Открыть</a></div>`:''}
+      </div>
+
+      <div class="bs"><div class="st">Программа</div>
+        ${posterImg(progUrl)}
+        ${progUrl?`<div style="margin-top:12px"><a class="ext" href="${esc(progUrl)}" target="_blank">↗ Открыть</a></div>`:''}
+      </div>
+
+      <div class="bs full"><div class="st">Технический райдер</div>
+        <table class="tt">
+          ${ttRow('Продолжительность',dur)}
+          ${ttRow('Антракты',interm)}
+          ${ttRow('Длительность актов',acts)}
+          ${ttRow('Монтировка',mount)}
+          ${ttRow('Световая монтировка',lmount)}
+          ${ttRow('Демонтаж',umount)}
+          ${ttRow('Расположение зрителей',stage)}
+          ${ttRow('Технические требования',tech)}
+        </table>
+      </div>
+
+      <div class="bs"><div class="st">Делегация и техперсонал</div>
+        <table class="tt">
+          ${ttRow('Актёров',nact)}
+          ${ttRow('Специалисты цехов',ncrew)}
+          ${ttRow('Монтировщики (принимающая)',nrig||'—')}
+          ${ttRow('Осветитель',nlit||'—')}
+          ${ttRow('Звукооператор',nsnd||'—')}
+        </table>
+      </div>
+
+      <div class="bs"><div class="st">Актёрский состав</div>${castRows(cast)}</div>
+
+      <div class="bs"><div class="st">Ведущие специалисты</div>${castRows(spec)}</div>
+
+      <div class="bs full"><div class="st">Материалы</div>
+        <div class="lnks">
+          ${vidUrl?`<a class="ext" href="${esc(vidUrl)}" target="_blank">▶ Видеозапись</a>`:''}
+          ${presUrl?`<a class="ext" href="${esc(presUrl)}" target="_blank">↗ Пресса</a>`:''}
+          ${!vidUrl&&!presUrl?'<span style="color:var(--muted2);font-size:16px">Ссылки не предоставлены</span>':''}
+        </div>
+      </div>
+
+      <div class="bs"><div class="st">Основной контакт</div>
+        ${contactCard(cFio,cPos,cPhone,cEmail)}
+      </div>
+
+      <div class="bs"><div class="st">Руководитель делегации</div>
+        ${contactCard(lFio,'',lPhone,lEmail)}
+      </div>
+
+
+
+    </div>
+  </div>
+</div>`;
+}
+
+function render(list){
+  document.getElementById('cnt').textContent = list.length;
+  if(!list.length){
+    document.getElementById('list').innerHTML='<div class="empty"><span>◎</span>Заявок не найдено</div>';
+    return;
+  }
+  document.getElementById('list').innerHTML = list.map((d,i)=>renderCard(d,i)).join('');
+}
+
+function filter(){
+  const g=document.querySelector('.tb-btn.active').dataset.genre;
+  const q=document.getElementById('sq').value.toLowerCase();
+  render(allData.filter(d=>{
+    const genre=v(d,'4. Жанр:');
+    const gok=g==='all'||genre===g;
+    const qok=!q||(v(d,' 3. Название спектакля:')+v(d,'1. Полное официальное и сокращенное названия театра:')+v(d,' 2. Регион, почтовый адрес театра:')+genre).toLowerCase().includes(q);
+    return gok&&qok;
+  }));
+}
+
+function tog(head){
+  const body=head.nextElementSibling;
+  const arr=head.querySelector('.toggle');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  arr.classList.toggle('open',!open);
+}
+
+document.querySelectorAll('.tb-btn').forEach(b=>b.addEventListener('click',function(){
+  document.querySelectorAll('.tb-btn').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active'); filter();
+}));
+document.getElementById('sq').addEventListener('input',filter);
+
+function loadJson(text,filename){
+  try{
+    const raw=JSON.parse(text);
+    if(!Array.isArray(raw)) throw new Error('Неверный формат');
+    allData=raw.map(entry=>{const d={};entry.forEach(([k,val])=>{d[k]=val;});return d;});
+    try{localStorage.setItem('festData',text);localStorage.setItem('festFile',filename);localStorage.setItem('festDate',new Date().toLocaleString('ru-RU'));}catch(e){}
+    document.getElementById('lastUpdate').textContent=`Обновлено: ${new Date().toLocaleString('ru-RU')} · ${filename}`;
+    showStatus('ok',`✅ Загружено ${allData.length} заявок из «${filename}»`);
+    render(allData);
+  }catch(e){showStatus('err',`❌ Ошибка: ${e.message}`);}
+}
+
+function showStatus(type,msg){
+  const el=document.getElementById('uploadStatus');
+  el.className='upload-status '+type;
+  el.textContent=msg;
+  setTimeout(()=>el.className='upload-status',5000);
+}
+
+document.getElementById('fileInput').addEventListener('change',function(){
+  if(this.files[0]){const f=this.files[0];const r=new FileReader();r.onload=e=>loadJson(e.target.result,f.name);r.readAsText(f);}
+});
+
+const drop=document.getElementById('dropArea');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag');}));
+drop.addEventListener('drop',e=>{
+  const f=e.dataTransfer.files[0];
+  if(f&&f.name.endsWith('.json')){const r=new FileReader();r.onload=ev=>loadJson(ev.target.result,f.name);r.readAsText(f);}
+  else showStatus('err','❌ Нужен файл .json');
+});
+
+// Восстановить из памяти браузера
+try{
+  const saved=localStorage.getItem('festData');
+  if(saved){
+    allData=JSON.parse(saved).map(entry=>{const d={};entry.forEach(([k,val])=>{d[k]=val;});return d;});
+    document.getElementById('lastUpdate').textContent=`Последнее обновление: ${localStorage.getItem('festDate')||''} · ${localStorage.getItem('festFile')||''}`;
+    render(allData);
+    showStatus('ok',`✅ Восстановлено ${allData.length} заявок`);
+  }
+}catch(e){}
+</script>
+</body>
+</html>
