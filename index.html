@@ -383,11 +383,23 @@ footer {
 </header>
 
 <div class="upload-zone">
-  <div class="drop-area" id="dropArea">
-    <input type="file" accept=".json" id="fileInput">
-    <span class="drop-icon">📂</span>
-    <div class="drop-title">Перетащите JSON файл сюда или нажмите</div>
-    <div class="drop-sub">Скачайте из Яндекс Форм → <b>Ответы → Скачать JSON</b> → перетащите сюда</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="font-size:2rem;">⚡</span>
+      <div>
+        <div style="font-size:17px;font-weight:700;color:var(--text);">Данные загружаются автоматически с GitHub</div>
+        <div style="font-size:14px;color:var(--muted);margin-top:3px;">Обновите <b>data.json</b> в репозитории — сайт покажет новые заявки</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <button onclick="loadFromGithub()" id="refreshBtn" style="background:var(--accent);color:white;border:none;padding:11px 26px;border-radius:6px;font-family:'Mulish',sans-serif;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;">
+        🔄 Обновить
+      </button>
+      <label style="background:white;color:var(--accent);border:2px solid var(--accent);padding:9px 18px;border-radius:6px;font-family:'Mulish',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">
+        📂 Загрузить файл
+        <input type="file" accept=".json" id="fileInput" style="display:none;">
+      </label>
+    </div>
   </div>
   <div class="upload-status" id="uploadStatus"></div>
 </div>
@@ -667,29 +679,39 @@ function showStatus(type,msg){
   setTimeout(()=>el.className='upload-status',5000);
 }
 
-document.getElementById('fileInput').addEventListener('change',function(){
-  if(this.files[0]){const f=this.files[0];const r=new FileReader();r.onload=e=>loadJson(e.target.result,f.name);r.readAsText(f);}
-});
+// ── ЗАГРУЗКА С GITHUB ──
+const GITHUB_JSON = 'data.json'; // файл в том же репозитории
 
-const drop=document.getElementById('dropArea');
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag');}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag');}));
-drop.addEventListener('drop',e=>{
-  const f=e.dataTransfer.files[0];
-  if(f&&f.name.endsWith('.json')){const r=new FileReader();r.onload=ev=>loadJson(ev.target.result,f.name);r.readAsText(f);}
-  else showStatus('err','❌ Нужен файл .json');
-});
-
-// Восстановить из памяти браузера
-try{
-  const saved=localStorage.getItem('festData');
-  if(saved){
-    allData=JSON.parse(saved).map(entry=>{const d={};entry.forEach(([k,val])=>{d[k]=val;});return d;});
-    document.getElementById('lastUpdate').textContent=`Последнее обновление: ${localStorage.getItem('festDate')||''} · ${localStorage.getItem('festFile')||''}`;
-    render(allData);
-    showStatus('ok',`✅ Восстановлено ${allData.length} заявок`);
+async function loadFromGithub() {
+  const btn = document.getElementById('refreshBtn');
+  btn.textContent = '⏳ Загружаю...';
+  btn.disabled = true;
+  showStatus('ok', '⏳ Загружаю данные...');
+  try {
+    const res = await fetch(GITHUB_JSON + '?t=' + Date.now()); // ?t= чтобы не брало кэш
+    if (!res.ok) throw new Error('Файл data.json не найден в репозитории');
+    const text = await res.text();
+    loadJson(text, 'data.json (GitHub)');
+  } catch(e) {
+    showStatus('err', '❌ ' + e.message);
+  } finally {
+    btn.textContent = '🔄 Обновить';
+    btn.disabled = false;
   }
-}catch(e){}
+}
+
+// Загрузка файла вручную (запасной вариант)
+document.getElementById('fileInput').addEventListener('change', function(){
+  if(this.files[0]){
+    const f=this.files[0];
+    const r=new FileReader();
+    r.onload=e=>loadJson(e.target.result, f.name);
+    r.readAsText(f);
+  }
+});
+
+// Автозагрузка при открытии страницы
+window.addEventListener('load', loadFromGithub);
 </script>
 </body>
 </html>
