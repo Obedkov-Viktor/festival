@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/Obyed/Downloads/index_26.html -->
-<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Заявки фестиваля</title>
-<link href="./index_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f2ee;
@@ -436,9 +436,9 @@ footer {
     <div class="hdr-sub">Все заявки участников фестиваля</div>
   </div>
   <div class="hdr-stat">
-    <span class="hdr-num" id="cnt">6</span>
+    <span class="hdr-num" id="cnt">0</span>
     <span class="hdr-lbl">заявок</span>
-    <div class="hdr-date" id="lastUpdate">Обновлено: 25.04.2026, 10:36:41 · data.json</div>
+    <div class="hdr-date" id="lastUpdate">Данные не загружены</div>
   </div>
 </header>
 
@@ -452,14 +452,16 @@ footer {
       </div>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-      <button onclick="loadFromGithub()" id="refreshBtn" style="background:var(--accent);color:white;border:none;padding:11px 26px;border-radius:6px;font-family:&#39;Mulish&#39;,sans-serif;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;">🔄 Обновить</button>
-      <label style="background:white;color:var(--accent);border:2px solid var(--accent);padding:9px 18px;border-radius:6px;font-family:&#39;Mulish&#39;,sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">
+      <button onclick="loadFromGithub()" id="refreshBtn" style="background:var(--accent);color:white;border:none;padding:11px 26px;border-radius:6px;font-family:'Mulish',sans-serif;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;">
+        🔄 Обновить
+      </button>
+      <label style="background:white;color:var(--accent);border:2px solid var(--accent);padding:9px 18px;border-radius:6px;font-family:'Mulish',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">
         📂 Загрузить файл
         <input type="file" accept=".json" id="fileInput" style="display:none;">
       </label>
     </div>
   </div>
-  <div class="upload-status" id="uploadStatus">✅ Загружено 6 заявок из «data.json»</div>
+  <div class="upload-status" id="uploadStatus"></div>
 </div>
 
 <div class="toolbar">
@@ -473,720 +475,14 @@ footer {
     <span class="si">⌕</span>
     <input type="text" id="sq" placeholder="Поиск по театру, спектаклю…">
   </div>
-  <button onclick="printPage()" style="background: white; color: var(--accent); border: 2px solid var(--accent); padding: 6px 16px; border-radius: 20px; font-family: Mulish, sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; margin-left: 8px; transition: 0.2s;" onmouseover="this.style.background=&#39;var(--accent)&#39;;this.style.color=&#39;white&#39;" onmouseout="this.style.background=&#39;white&#39;;this.style.color=&#39;var(--accent)&#39;">
+  <button onclick="printPage()" style="background:white;color:var(--accent);border:2px solid var(--accent);padding:6px 16px;border-radius:20px;font-family:'Mulish',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-left:8px;transition:all .2s;" onmouseover="this.style.background='var(--accent)';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='var(--accent)'">
     🖨️ Печать
   </button>
 </div>
 
 <div id="list">
-<div class="card" data-genre="Драматический" data-s="выходили бабки замужтеатр неслышащих актеров " свой="" голос",="" новосибирское="" региональное="" отделение="" общероссийской="" общественной="" организации="" инвалидов="" "всероссийское="" общество="" глухих""630079,="" г.="" новосибирск,="" ул.="" серафимовича,="" д.32драматический"="">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">1</div>
-    <div class="card-sum">
-      <div class="card-play">Выходили бабки замуж</div>
-      <div class="card-theater">Театр неслышащих актеров "Свой голос", Новосибирское региональное отделение Общероссийской общественной организации инвалидов "Всероссийское общество глухих""</div>
-      <div class="chips">
-        <span class="chip cg">Драматический</span>
-        <span class="chip ca">12 +</span>
-        <span class="chip cc">📍 ул. Серафимовича, д.32</span>
-        <span class="chip cc">⏱ 00:50</span>
-        <span class="chip cc">Перевод: Нет</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2333835168</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-03-11 13:13:40</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>Театр неслышащих актеров "Свой голос", Новосибирское региональное отделение Общероссийской общественной организации инвалидов "Всероссийское общество глухих""</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>630079, г. Новосибирск, ул. Серафимовича, д.32</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Выходили бабки замуж</p></div>
-          <div class="f"><label>Жанр</label><p>Драматический</p></div>
-          <div class="f"><label>Возраст</label><p>12 +</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Буляков Флорид Миннулович</p></div>
-          <div class="f"><label>Режиссёр</label><p>Полушина Мария Владимировна</p></div>
-          <div class="f"><label>Художник</label><p>Полушина Мария Владимировна</p></div>
-          <div class="f"><label>Премьера</label><p>2025-10-30</p></div>
-          <div class="f"><label>Перевод</label><p>Нет</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">Трогательная и веселая история четырех подруг-пенсионерок из дома престарелых. Несмотря на возраст и трудности прошлого, в их сердцах горит огонь молодости. Сюжет закручивает неожиданный визит мужчины, который оживляет будни и пробуждает в героинях мечты о новой любви и счастье.</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <a class="ext" href="https://disk.yandex.ru/client/disk/Yandex.Forms/69a59c4a90fa7b6fbb176d5d/Files?idApp=client&amp;dialog=slider&amp;idDialog=%2Fdisk%2FYandex.Forms%2F69a59c4a90fa7b6fbb176d5d%2FFiles%2F69b13e016d2d73f9d4353ad1_programma_spektaklya.docx" target="_blank">Открыть файл</a>
-        <div style="margin-top:12px"><a class="ext" href="https://disk.yandex.ru/client/disk/Yandex.Forms/69a59c4a90fa7b6fbb176d5d/Files?idApp=client&amp;dialog=slider&amp;idDialog=%2Fdisk%2FYandex.Forms%2F69a59c4a90fa7b6fbb176d5d%2FFiles%2F69b13e016d2d73f9d4353ad1_programma_spektaklya.docx" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>00:50</td></tr>
-          <tr><td>Антракты</td><td>-</td></tr>
-          <tr><td>Длительность актов</td><td>-</td></tr>
-          <tr><td>Монтировка</td><td>00:30</td></tr>
-          <tr><td>Световая монтировка</td><td>00:10</td></tr>
-          <tr><td>Демонтаж</td><td>00:30</td></tr>
-          <tr><td>Расположение зрителей</td><td>Основная  сцена</td></tr>
-          <tr><td>Технические требования</td><td>перенесение навесной свет над столом в центре</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>8</td></tr>
-          <tr><td>Специалисты цехов</td><td>4</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>1</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>1</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Нищук Галина Константиновна</span><span class="cast-role">соседка</span></div><div class="cast-row"><span class="cast-name">Сиренко Наталья Александровна</span><span class="cast-role">врач</span></div><div class="cast-row"><span class="cast-name">Байдукова Зоя Васильевна</span><span class="cast-role">уборщица</span></div><div class="cast-row"><span class="cast-name">Сабадашева Людмила Германовна</span><span class="cast-role">Мария</span></div><div class="cast-row"><span class="cast-name">Соколова Елена Алексеевна</span><span class="cast-role">Авдотья</span></div><div class="cast-row"><span class="cast-name">Рогозина Галина Георгиевна</span><span class="cast-role">Ольга</span></div><div class="cast-row"><span class="cast-name">Кеда Светлана Николаевна</span><span class="cast-role">Галина</span></div><div class="cast-row"><span class="cast-name">Лобач Виктор Константинович</span><span class="cast-role">Иван</span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Звуко-свето режиссер: Хламов Андрей Петрович</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Диктор: Брагина Полина Анатольевна,</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Чикин Алексей Алексеевич</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Педагог по жестовому языку: Горбат Светлана Сергеевна</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://disk.yandex.ru/i/Qrcq4PnLxZOESA" target="_blank">▶ Видеозапись</a>
-          <a class="ext" href="https://t.me/nrovog54/10/4566" target="_blank">↗ Пресса</a>
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    <div class="cname">Хламова Татьяна Викторовна</div>
-    <div class="cpos">Председатель</div>
-    <div class="clinks">
-      <a href="tel:+7 923 226-27-33">📞 +7 923 226-27-33</a>
-      <a href="mailto:nskvog@mail.ru">✉ nskvog@mail.ru</a>
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <div class="ccard">
-    <div class="cname">Хламова Татьяна Викторовна</div>
-    
-    <div class="clinks">
-      <a href="tel:+7 923 226-27-33">📞 +7 923 226-27-33</a>
-      <a href="mailto:nskvog@mail.ru">✉ nskvog@mail.ru</a>
-    </div>
-  </div>
-      </div>
-
-
-
-    </div>
-  </div>
+  <div class="empty"><span>◎</span>Загрузите JSON файл из Яндекс Форм чтобы увидеть заявки</div>
 </div>
-<div class="card" data-genre="Пластический" data-s="эти людимдт театронтурышев игорь георгиевич, ул карла либкнехта 13, цокольный этаж, г. екатеринбург, 620075пластический">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">2</div>
-    <div class="card-sum">
-      <div class="card-play">Эти люди</div>
-      <div class="card-theater">МДТ Театрон</div>
-      <div class="chips">
-        <span class="chip cg">Пластический</span>
-        <span class="chip ca">16 +</span>
-        <span class="chip cc">📍 г. Екатеринбург, 620075</span>
-        <span class="chip cc">⏱ 35 минут</span>
-        <span class="chip cc">Перевод: Нет</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2343700644</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-03-19 11:07:41</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>МДТ Театрон</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>Турышев Игорь Георгиевич, ул Карла Либкнехта 13, цокольный этаж, г. Екатеринбург, 620075</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Эти люди</p></div>
-          <div class="f"><label>Жанр</label><p>Пластический</p></div>
-          <div class="f"><label>Возраст</label><p>16 +</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Лукиных Владислав Анатольевич</p></div>
-          <div class="f"><label>Режиссёр</label><p>Лукиных Владислав Анатольевич</p></div>
-          <div class="f"><label>Художник</label><p>Селезнев  Юрий</p></div>
-          <div class="f"><label>Премьера</label><p>2024-10-24</p></div>
-          <div class="f"><label>Перевод</label><p>Нет</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">Сюжет пластического спектакля «Эти люди» представляет собой историю молодой, независимой девушки, которая не придерживается устоявшихся стереотипов.
-
-Ей предстоит встретиться со своими обидами и травмами, которые нанесли родители.
-
-Наши страхи и воспоминания подобны «вечному шкафу», его невозможно просто выбросить или купить новый. Рано или поздно в нем придется вытереть всю пыль и навести порядок, иначе человек не сможет достичь внутреннего счастья и покоя.</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files(1)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(1)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <img class="poster-img" src="./index_files/Files(2)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(2)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>35 минут</td></tr>
-          <tr><td>Антракты</td><td>нет</td></tr>
-          <tr><td>Длительность актов</td><td>1 акт - 35 минут</td></tr>
-          <tr><td>Монтировка</td><td>2 часа</td></tr>
-          <tr><td>Световая монтировка</td><td>1 час</td></tr>
-          <tr><td>Демонтаж</td><td>1 час</td></tr>
-          <tr><td>Расположение зрителей</td><td>Основная  сцена</td></tr>
-          <tr><td>Технические требования</td><td>на середине сцене должен быть установлен шкаф</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>7</td></tr>
-          <tr><td>Специалисты цехов</td><td>2</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>2</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>—</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Верхотурова Надежда Андреевна</span><span class="cast-role">дочь</span></div><div class="cast-row"><span class="cast-name">Константинов Павел Денисович</span><span class="cast-role">отец</span></div><div class="cast-row"><span class="cast-name">Урушева Мария</span><span class="cast-role">мать</span></div><div class="cast-row"><span class="cast-name">Микрюкова Екатерина Игоревна</span><span class="cast-role">другая мать</span></div><div class="cast-row"><span class="cast-name">Кадочникова Екатерина Евгеньевна</span><span class="cast-role">другая мать</span></div><div class="cast-row"><span class="cast-name">Бурухин Данил Русланович</span><span class="cast-role">другой отец</span></div><div class="cast-row"><span class="cast-name">Иванников Елисей</span><span class="cast-role">другой отец</span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><p class="mt">не указано</p></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://vkvideo.ru/video159787291_456240236?t=31s" target="_blank">▶ Видеозапись</a>
-          
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    <div class="cname">Лукиных Владислав Анатольевич</div>
-    
-    <div class="clinks">
-      
-      
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <p class="mt">не указано</p>
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-<div class="card" data-genre="Музыкальный" data-s="волшебный рубинтеатр минимализма s.t.e.r.москва ул таганская 40-42музыкальный">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">3</div>
-    <div class="card-sum">
-      <div class="card-play">Волшебный рубин</div>
-      <div class="card-theater">Театр минимализма s.t.e.r.</div>
-      <div class="chips">
-        <span class="chip cg">Музыкальный</span>
-        <span class="chip ca">12 +</span>
-        <span class="chip cc">📍 Москва ул Таганская 40-42</span>
-        <span class="chip cc">⏱ 1 час</span>
-        <span class="chip ct">Перевод: Да</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2343730391</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-03-19 11:26:07</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>Театр минимализма s.t.e.r.</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>Москва ул Таганская 40-42</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Волшебный рубин</p></div>
-          <div class="f"><label>Жанр</label><p>Музыкальный</p></div>
-          <div class="f"><label>Возраст</label><p>12 +</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Ника Арника</p></div>
-          <div class="f"><label>Режиссёр</label><p>Гусаров Алексей</p></div>
-          <div class="f"><label>Художник</label><p>Гусаров Алексей</p></div>
-          <div class="f"><label>Премьера</label><p>2024-02-23</p></div>
-          <div class="f"><label>Перевод</label><p>Да</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">Детский музыкальный спектакль с элементами интерактива для всей семьи.
-
-Принц и Королева-мать мечтают стать великими волшебниками, но у них плохо выходит колдовство. Королева предлагает жениться на Принцессе, которой в приданое дадут Волшебный рубин, делающий обладателя великим волшебником.
-
-Принц не хочет жениться и ищет другой способ завладеть рубином, сговорившись с лесной Разбойницей. Их авантюра может привести к казни принцессы, и Принц встаёт перед выбором- спасти невинного человека или стать великим волшебнико</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files(3)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(3)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <img class="poster-img" src="./index_files/Files(4)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(4)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>1 час</td></tr>
-          <tr><td>Антракты</td><td>Нет</td></tr>
-          <tr><td>Длительность актов</td><td>Один акт 1 час</td></tr>
-          <tr><td>Монтировка</td><td>30 минут</td></tr>
-          <tr><td>Световая монтировка</td><td>1 час</td></tr>
-          <tr><td>Демонтаж</td><td>50 минут</td></tr>
-          <tr><td>Расположение зрителей</td><td>Основная  сцена</td></tr>
-          <tr><td>Технические требования</td><td>Микрофоны, видео проэктор.</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>2</td></tr>
-          <tr><td>Специалисты цехов</td><td>2</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>1</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>1</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Гусаров Алексей Алексеевич-Принц</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Исаева Надежда Владиславовна-Королева мать, разбойница.</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Звукорежиссёр-Новикова Вера Алексеевна</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Видеохудожник, Художник по свету Руцкий Фёдор Александрович</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://yandex.ru/video/touch/preview/6259960148479248261" target="_blank">▶ Видеозапись</a>
-          <a class="ext" href="https://dzen.ru/a/ZAOsT-8j92z0adh4?ysclid=mmx71i395w763207021" target="_blank">↗ Пресса</a>
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    <div class="cname">Гусаров Алексей Алексеевич</div>
-    
-    <div class="clinks">
-      
-      
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <p class="mt">не указано</p>
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-<div class="card" data-genre="Визуальная миниатюра" data-s="мечтатворческая школа актёрского мастерства " премьера!",="" театр-студия="" "премьера!"кемеровская="" область-кузбассвизуальная="" миниатюра"="">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">4</div>
-    <div class="card-sum">
-      <div class="card-play">Мечта</div>
-      <div class="card-theater">Творческая школа актёрского мастерства "Премьера!", Театр-студия "Премьера!"</div>
-      <div class="chips">
-        <span class="chip cg">Визуальная миниатюра</span>
-        <span class="chip ca">0+</span>
-        <span class="chip cc">📍 Кемеровская область-Кузбасс</span>
-        <span class="chip cc">⏱ 35 минут</span>
-        <span class="chip cc">Перевод: Нет</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2343759563</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-03-19 11:43:14</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>Творческая школа актёрского мастерства "Премьера!", Театр-студия "Премьера!"</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>Кемеровская область-Кузбасс</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Мечта</p></div>
-          <div class="f"><label>Жанр</label><p>Визуальная миниатюра</p></div>
-          <div class="f"><label>Возраст</label><p>0+</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Авонави (Кузмина) Ирина Петровна</p></div>
-          <div class="f"><label>Режиссёр</label><p>Добрый день, уважаемые родители ☀️ Завтра в 13.00 состоится награждение в конкурсе "Рыжий клоун"🙌  Отпишитесь, пожалуйста, кто планирует быть, а кто не сможет. Если вдруг не получится быть, не переживайте, мы все грамоты заберём 🤗</p></div>
-          <div class="f"><label>Художник</label><p>Добрый день, уважаемые родители ☀️ Завтра в 13.00 состоится награждение в конкурсе "Рыжий клоун"🙌  Отпишитесь, пожалуйста, кто планирует быть, а кто не сможет. Если вдруг не получится быть, не переживайте, мы все грамоты заберём 🤗</p></div>
-          <div class="f"><label>Премьера</label><p>2026-01-05</p></div>
-          <div class="f"><label>Перевод</label><p>Нет</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">У каждого из нас есть мечта! И иногда кажется, будто она неосуществима. Именно мечта дает нам силы идти дальше по тернистому пути. И если приложить немного упорства и стараний, то даже самая невообразимая мечта, имеет свойство сбываться! Главное – ВЕРИТЬ!</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files(5)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(5)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <img class="poster-img" src="./index_files/Files(6)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(6)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>35 минут</td></tr>
-          <tr><td>Антракты</td><td>0</td></tr>
-          <tr><td>Длительность актов</td><td>35 минут</td></tr>
-          <tr><td>Монтировка</td><td>10 минут</td></tr>
-          <tr><td>Световая монтировка</td><td>15-30 минут</td></tr>
-          <tr><td>Демонтаж</td><td>15 минут</td></tr>
-          <tr><td>Расположение зрителей</td><td>Основная  сцена</td></tr>
-          <tr><td>Технические требования</td><td>Нет</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>6</td></tr>
-          <tr><td>Специалисты цехов</td><td>2</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>—</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>1</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Инна Морозова</span><span class="cast-role">Уборщица</span></div><div class="cast-row"><span class="cast-name">Театральная труппа:</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Полина Данилова</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Виктория Пастухова</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Руслан Сетковский</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Майя Рихтер</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Анастасия Макарова</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><p class="mt">не указано</p></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://t.me/premiera_ham/447?single" target="_blank">▶ Видеозапись</a>
-          
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    
-    <div class="cpos">Руководитель</div>
-    <div class="clinks">
-      <a href="tel:+7 950 261-25-44">📞 +7 950 261-25-44</a>
-      <a href="mailto:Iri1498856@yandex.ru">✉ Iri1498856@yandex.ru</a>
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <div class="ccard">
-    <div class="cname">Кузмина Ирина Петровна</div>
-    
-    <div class="clinks">
-      <a href="tel:+7 950 261-25-44">📞 +7 950 261-25-44</a>
-      <a href="mailto:Iri1498856@yandex.ru">✉ Iri1498856@yandex.ru</a>
-    </div>
-  </div>
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-<div class="card" data-genre="Пластический" data-s="хаврошечкамолодёжный музыкально-пластический театр нонтекст197082,  санкт-петербург, богатырский проспект, дом 44, литера а.пластический">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">5</div>
-    <div class="card-sum">
-      <div class="card-play">Хаврошечка</div>
-      <div class="card-theater">Молодёжный музыкально-пластический театр НОНТЕКСТ</div>
-      <div class="chips">
-        <span class="chip cg">Пластический</span>
-        <span class="chip ca">12 +, 6+</span>
-        <span class="chip cc">📍 дом 44, литера А.</span>
-        <span class="chip cc">⏱ 40:00</span>
-        <span class="chip cc">Перевод: Нет</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2385109019</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-04-22 20:52:49</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>Молодёжный музыкально-пластический театр НОНТЕКСТ</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>197082,  Санкт-Петербург, Богатырский проспект, дом 44, литера А.</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Хаврошечка</p></div>
-          <div class="f"><label>Жанр</label><p>Пластический</p></div>
-          <div class="f"><label>Возраст</label><p>12 +, 6+</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Режиссёр</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Художник</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Премьера</label><p>2025-03-25</p></div>
-          <div class="f"><label>Перевод</label><p>Нет</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">Музыкально-пластический театр NONETEXT представляет пластическую зарисовку по мотивам сказки "Крошечка-Хаврошечка". 
-
-Русские народные сказки — это не просто истории. Они хранят в себе символы, мифы и образы,  уходящие корнями в глубокую древность, когда наши предки учили детей самому важному и сакральному.
-
-Спектакль "Хаврошечка" - это попытка воссоздать атмосферу славянского мира,  язычества и древних обрядов. 
-
-На языке танца мы расскажем историю о взрослении, борьбе, внутренней силе и обретении себя. Об испытаниях, преодолев которые все мы становимся сильнее.</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files(7)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(7)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <img class="poster-img" src="./index_files/Files(8)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(8)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>40:00</td></tr>
-          <tr><td>Антракты</td><td>0</td></tr>
-          <tr><td>Длительность актов</td><td>1-й акт: 40:00</td></tr>
-          <tr><td>Монтировка</td><td>00:03</td></tr>
-          <tr><td>Световая монтировка</td><td>00:00</td></tr>
-          <tr><td>Демонтаж</td><td>00:03</td></tr>
-          <tr><td>Расположение зрителей</td><td>Фойе</td></tr>
-          <tr><td>Технические требования</td><td>нет</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>9</td></tr>
-          <tr><td>Специалисты цехов</td><td>1</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>—</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>1</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Кокорина Александра Николаевна</span><span class="cast-role">Хаврошечка</span></div><div class="cast-row"><span class="cast-name">Ковалевская Майя Алексеевна</span><span class="cast-role">Коровушка-матушка</span></div><div class="cast-row"><span class="cast-name">Бахтина Мария Владимировна</span><span class="cast-role">Одноглазка</span></div><div class="cast-row"><span class="cast-name">Дельцова Дарья Ивановна</span><span class="cast-role">Двуглазка</span></div><div class="cast-row"><span class="cast-name">Данилеску Полина Юрьевна</span><span class="cast-role">Триглазка</span></div><div class="cast-row"><span class="cast-name">Горчакова Елизавета Викторовна</span><span class="cast-role">Третий глаз</span></div><div class="cast-row"><span class="cast-name">Петрова Елена Романовна</span><span class="cast-role">Божество</span></div><div class="cast-row"><span class="cast-name">Сагулина Елена Евгеньевна</span><span class="cast-role">Божество</span></div><div class="cast-row"><span class="cast-name">Степкина Дарья Михайловна</span><span class="cast-role">Божество</span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Хореограф: Иванова Анна Вячеславовна</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Художник по костюмам: Иванова Анна Вячеславовна</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://disk.yandex.ru/d/oB051OdMotL1BQ" target="_blank">▶ Видеозапись</a>
-          <a class="ext" href="https://dzen.ru/a/aH3tZ40cLVkQNSJA?sid=107142347928653984" target="_blank">↗ Пресса</a>
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    <div class="cname">Иванова Анна Вячеславовна</div>
-    <div class="cpos">Режиссер</div>
-    <div class="clinks">
-      <a href="tel:+7 911 734-09-20">📞 +7 911 734-09-20</a>
-      <a href="mailto:dancing.anna25@gmail.com">✉ dancing.anna25@gmail.com</a>
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <div class="ccard">
-    <div class="cname">Иванова Анна Вячеславовна</div>
-    
-    <div class="clinks">
-      <a href="tel:+7 911 734-09-20">📞 +7 911 734-09-20</a>
-      <a href="mailto:dancing.anna25@gmail.com">✉ dancing.anna25@gmail.com</a>
-    </div>
-  </div>
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-<div class="card" data-genre="Пластический" data-s="снегурочкамолодёжный музыкально-пластический театр нонтекст197082,  санкт-петербург, богатырский проспект, дом 44, литера а.пластический">
-  <div class="card-head" onclick="tog(this)">
-    <div class="card-num">6</div>
-    <div class="card-sum">
-      <div class="card-play">Снегурочка</div>
-      <div class="card-theater">Молодёжный музыкально-пластический театр НОНТЕКСТ</div>
-      <div class="chips">
-        <span class="chip cg">Пластический</span>
-        <span class="chip ca">6+</span>
-        <span class="chip cc">📍 дом 44, литера А.</span>
-        <span class="chip cc">⏱ 00:35</span>
-        <span class="chip cc">Перевод: Нет</span>
-      </div>
-    </div>
-    <div class="toggle">▾</div>
-  </div>
-  <div class="card-body">
-    <div class="bg">
-
-      <div class="bs"><div class="st">Театр и адрес</div>
-        <div class="fg">
-          <div class="f"><label>ID заявки</label><p>2385137307</p></div>
-          <div class="f"><label>Дата подачи</label><p>2026-04-22 21:21:37</p></div>
-          <div class="f s2"><label>Полное название театра</label><p>Молодёжный музыкально-пластический театр НОНТЕКСТ</p></div>
-          <div class="f s2"><label>Регион / Адрес</label><p>197082,  Санкт-Петербург, Богатырский проспект, дом 44, литера А.</p></div>
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">О спектакле</div>
-        <div class="fg">
-          <div class="f s2"><label>Название</label><p>Снегурочка</p></div>
-          <div class="f"><label>Жанр</label><p>Пластический</p></div>
-          <div class="f"><label>Возраст</label><p>6+</p></div>
-          <div class="f s2"><label>Автор / Инсценировка</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Режиссёр</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Художник</label><p>Иванова Анна Вячеславовна</p></div>
-          <div class="f"><label>Премьера</label><p>2026-03-24</p></div>
-          <div class="f"><label>Перевод</label><p>Нет</p></div>
-        </div>
-      </div>
-
-      <div class="bs full"><div class="st">Аннотация</div>
-        <p class="ann">С древности образ Снегурочки - холодной девушки - вдохновлял людей в самые разные времена. Что вспоминается вам, когда вы слышите это имя? Народная сказка или пьеса Островского? А, может, опера Римского-Корсакова? 
-
-Мы тоже решили прикоснуться к этой истории и готовы представить вам свою интерпретацию. Она вдохновлена природой севера: его извилистыми деревьями, крепкими камнями и холодным мерцанием далеких светил. 
-
-Ледяная дева, существующая в идеальном замкнутом мире и не знающая чувств, Снегурочка однажды вырвется на волю и окажется среди живых, где она чужая и не такая, как остальные. Ей предстоит узнать, что это такое "быть живой".
-
-Команда театра НОНТЕКСТ сыграет для вас спектакль о чувственности и холоде, о женском и мужском, о смерти и жизни. Пластический спектакль «Снегурочка».</p>
-      </div>
-
-      <div class="bs"><div class="st">Афиша</div>
-        <img class="poster-img" src="./index_files/Files(9)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(9)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs"><div class="st">Программа</div>
-        <img class="poster-img" src="./index_files/Files(10)" alt="Афиша" onerror="this.style.display=&#39;none&#39;" style="display: none;">
-        <div style="margin-top:12px"><a class="ext" href="./index_files/Files(10)" target="_blank">↗ Открыть</a></div>
-      </div>
-
-      <div class="bs full"><div class="st">Технический райдер</div>
-        <table class="tt">
-          <tbody><tr><td>Продолжительность</td><td>00:35</td></tr>
-          <tr><td>Антракты</td><td>0</td></tr>
-          <tr><td>Длительность актов</td><td>1-й акт: 00:35</td></tr>
-          <tr><td>Монтировка</td><td>0</td></tr>
-          <tr><td>Световая монтировка</td><td>0</td></tr>
-          <tr><td>Демонтаж</td><td>0</td></tr>
-          <tr><td>Расположение зрителей</td><td>Фойе</td></tr>
-          <tr><td>Технические требования</td><td>нет</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Делегация и техперсонал</div>
-        <table class="tt">
-          <tbody><tr><td>Актёров</td><td>9</td></tr>
-          <tr><td>Специалисты цехов</td><td>1</td></tr>
-          <tr><td>Монтировщики (принимающая)</td><td>—</td></tr>
-          <tr><td>Осветитель</td><td>1</td></tr>
-          <tr><td>Звукооператор</td><td>1</td></tr>
-        </tbody></table>
-      </div>
-
-      <div class="bs"><div class="st">Актёрский состав</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Дельцова Дарья Ивановна</span><span class="cast-role">Снегурочка</span></div><div class="cast-row"><span class="cast-name">Горчакова Елизавета Викторовна</span><span class="cast-role">Холодная мать</span></div><div class="cast-row"><span class="cast-name">Бахтина Мария Владимировна</span><span class="cast-role">Холодная мать</span></div><div class="cast-row"><span class="cast-name">Петрова Елена Романовна</span><span class="cast-role">Холодная мать</span></div><div class="cast-row"><span class="cast-name">Кокорина Александра Николаевна</span><span class="cast-role">Мужчина, Живая</span></div><div class="cast-row"><span class="cast-name">Ковалевская Майя Алексеевна</span><span class="cast-role">Живая</span></div><div class="cast-row"><span class="cast-name">Сагулина Елена Евгеньевна</span><span class="cast-role">Живая</span></div><div class="cast-row"><span class="cast-name">Степкина Дарья Михайловна</span><span class="cast-role">Живая</span></div><div class="cast-row"><span class="cast-name">Данилеску Полина Юрьевна</span><span class="cast-role">Живая</span></div></div></div>
-
-      <div class="bs"><div class="st">Ведущие специалисты</div><div class="cast-list"><div class="cast-row"><span class="cast-name">Хореограф: Иванова Анна Вячеславовна</span><span class="cast-role"></span></div><div class="cast-row"><span class="cast-name">Художник по костюмам: Иванова Анна Вячеславовна</span><span class="cast-role"></span></div></div></div>
-
-      <div class="bs full"><div class="st">Материалы</div>
-        <div class="lnks">
-          <a class="ext" href="https://disk.yandex.ru/i/18xcPjhtG7FX_A" target="_blank">▶ Видеозапись</a>
-          
-          
-        </div>
-      </div>
-
-      <div class="bs"><div class="st">Основной контакт</div>
-        <div class="ccard">
-    <div class="cname">Иванова Анна Вячеславовна</div>
-    <div class="cpos">Режиссер</div>
-    <div class="clinks">
-      <a href="tel:+7 911 734-09-20">📞 +7 911 734-09-20</a>
-      <a href="mailto:dancing.anna25@gmail.com">✉ dancing.anna25@gmail.com</a>
-    </div>
-  </div>
-      </div>
-
-      <div class="bs"><div class="st">Руководитель делегации</div>
-        <div class="ccard">
-    <div class="cname">Иванова Анна Вячеславовна</div>
-    
-    <div class="clinks">
-      <a href="tel:+7 911 734-09-20">📞 +7 911 734-09-20</a>
-      <a href="mailto:dancing.anna25@gmail.com">✉ dancing.anna25@gmail.com</a>
-    </div>
-  </div>
-      </div>
-
-
-
-    </div>
-  </div>
-</div></div>
 
 <footer>Внутренний ресурс фестиваля · Обновляется через JSON из Яндекс Форм</footer>
 
@@ -1218,9 +514,26 @@ function castRows(str){
 
 function posterImg(url){
   if(!url) return '<p class="mt">не указано</p>';
+  // Извлекаем ID файла из ссылки Яндекса: ...%2FFiles%2F69b13fbc5056907fb3abb160_afisha.jpg
+  let localPath = null;
+  const idMatch = url.match(/Files%2F([^&]+)/);
+  if (idMatch) {
+    localPath = 'images/' + decodeURIComponent(idMatch[1]);
+  }
+  // Если есть локальный путь — показываем картинку из images/
+  if (localPath && /\.(jpg|jpeg|png|webp|gif)/i.test(localPath)) {
+    return `<div style="line-height:0;position:relative;display:inline-block;max-width:100%;">
+      <img src="${esc(localPath)}" alt="Афиша"
+        style="max-width:100%;max-height:300px;display:block;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+      <a href="${esc(localPath)}" target="_blank" class="ext" style="display:none;margin-top:8px;">↗ Открыть файл</a>
+    </div>`;
+  }
+  // Если прямая ссылка на картинку
   if(/\.(jpg|jpeg|png|webp|gif)(\?|$)/i.test(url))
     return `<img class="poster-img" src="${esc(url)}" alt="Афиша" onerror="this.style.display='none'">`;
-  return `<a class="ext" href="${esc(url)}" target="_blank">Открыть файл</a>`;
+  // Иначе кнопка
+  return `<a class="ext" href="${esc(url)}" target="_blank">↗ Открыть файл</a>`;
 }
 
 function contactCard(fio,pos,phone,email){
@@ -1492,6 +805,5 @@ function printPage() {
   }, 1000);
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
