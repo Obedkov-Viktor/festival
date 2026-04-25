@@ -518,7 +518,7 @@ function posterImg(url){
   let localPath = null;
   const idMatch = url.match(/Files%2F([^&]+)/);
   if (idMatch) {
-    localPath = 'images/' + decodeURIComponent(idMatch[1]);
+    localPath = 'images/' + decodeURIComponent(idMatch[1]).replace(/\.png$/i, '.jpg').replace(/\.webp$/i, '.jpg');
   }
   // Если есть локальный путь — показываем картинку из images/
   if (localPath && /\.(jpg|jpeg|png|webp|gif)/i.test(localPath)) {
