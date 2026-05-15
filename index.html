@@ -195,6 +195,26 @@ h1 {
 }
 .search-wrap input:focus { border-color: var(--accent); }
 .si { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted2); font-size: 18px; pointer-events: none; }
+.tb-sep { width: 1px; height: 28px; background: var(--border2); margin: 0 4px; }
+.tb-select {
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  color: var(--muted);
+  font-family: 'Mulish', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 34px 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a99e94' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.tb-select:hover, .tb-select:focus { border-color: var(--accent); color: var(--accent); }
 
 /* ── CARDS ── */
 #list { padding: 32px 60px; display: flex; flex-direction: column; gap: 16px; }
@@ -471,6 +491,11 @@ footer {
   <button class="tb-btn" data-genre="Пластический">Пластический</button>
   <button class="tb-btn" data-genre="Музыкальный">Музыкальный</button>
   <button class="tb-btn" data-genre="Визуальная миниатюра">Миниатюра</button>
+  <div class="tb-sep"></div>
+  <span class="tb-label">Город:</span>
+  <select class="tb-select" id="cityFilter" title="Фильтр по городу">
+    <option value="all">Все города</option>
+  </select>
   <div class="search-wrap">
     <span class="si">⌕</span>
     <input type="text" id="sq" placeholder="Поиск по театру, спектаклю…">
@@ -491,6 +516,7 @@ let allData = [];
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function v(d,k){ return (d[k]||'').toString().trim(); }
+function extractCity(address){ return address ? address.split(',')[0].trim() : ''; }
 
 function getAge(d){
   return [v(d,'9. Возрастные ограничения: / 12 +'),
@@ -717,12 +743,15 @@ function render(list){
 
 function filter(){
   const g=document.querySelector('.tb-btn.active').dataset.genre;
+  const c=document.getElementById('cityFilter').value;
   const q=document.getElementById('sq').value.toLowerCase();
   render(allData.filter(d=>{
     const genre=v(d,'4. Жанр:');
+    const address=v(d,' 2. Регион, почтовый адрес театра:');
     const gok=g==='all'||genre===g;
-    const qok=!q||(v(d,' 3. Название спектакля:')+v(d,'1. Полное официальное и сокращенное названия театра:')+v(d,' 2. Регион, почтовый адрес театра:')+genre).toLowerCase().includes(q);
-    return gok&&qok;
+    const cok=c==='all'||extractCity(address)===c;
+    const qok=!q||(v(d,' 3. Название спектакля:')+v(d,'1. Полное официальное и сокращенное названия театра:')+address+genre).toLowerCase().includes(q);
+    return gok&&cok&&qok;
   }));
 }
 
@@ -738,6 +767,7 @@ document.querySelectorAll('.tb-btn').forEach(b=>b.addEventListener('click',funct
   document.querySelectorAll('.tb-btn').forEach(x=>x.classList.remove('active'));
   this.classList.add('active'); filter();
 }));
+document.getElementById('cityFilter').addEventListener('change',filter);
 document.getElementById('sq').addEventListener('input',filter);
 
 function loadJson(text,filename){
@@ -748,6 +778,9 @@ function loadJson(text,filename){
     try{localStorage.setItem('festData',text);localStorage.setItem('festFile',filename);localStorage.setItem('festDate',new Date().toLocaleString('ru-RU'));}catch(e){}
     document.getElementById('lastUpdate').textContent=`Обновлено: ${new Date().toLocaleString('ru-RU')} · ${filename}`;
     showStatus('ok',`✅ Загружено ${allData.length} заявок из «${filename}»`);
+    const cities=[...new Set(allData.map(d=>extractCity(v(d,' 2. Регион, почтовый адрес театра:'))).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru'));
+    const sel=document.getElementById('cityFilter');
+    sel.innerHTML='<option value="all">Все города</option>'+cities.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
     render(allData);
   }catch(e){showStatus('err',`❌ Ошибка: ${e.message}`);}
 }
